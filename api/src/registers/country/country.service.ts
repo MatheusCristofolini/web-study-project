@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { StateService } from '../state/state.service';
+import { StateEntity } from '../state/entities/state.entity';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
 import { CountryEntity } from './entities/country.entity';
@@ -15,64 +15,71 @@ export class CountryService {
   constructor(
     @InjectRepository(CountryEntity)
     private readonly countryRepository: Repository<CountryEntity>,
-    private readonly stateService: StateService,
+    @InjectRepository(StateEntity)
+    private readonly stateRepository: Repository<StateEntity>,
   ) {}
 
-  async create(createCountryDto: CreateCountryDto) {
-    const hasCountry = await this.countryRepository.findOne({
-      where: { name: createCountryDto.name },
-    });
-
-    if (hasCountry) {
-      throw new InternalServerErrorException(
-        `Já existe um país com o nome ${createCountryDto.name}!`,
-      );
-    }
-
+  // PUBLIC
+  public async create(createCountryDto: CreateCountryDto) {
+    await this.validateUniqueCountryName(createCountryDto.name);
     const country = this.countryRepository.create(createCountryDto);
     return this.countryRepository.save(country);
   }
-
-  findAll() {
+  public findAll() {
     return this.countryRepository.find();
   }
-
-  async findOne(id: number) {
+  public async findOne(id: number) {
+    await this.countryNotFound(id);
     const country = await this.countryRepository.findOne({
       where: { id: +id },
     });
-    if (!country) {
-      throw new NotFoundException(`País ${id} não cadastrado!`);
-    }
-
     return country;
   }
-
-  async update(id: number, updateCountryDto: UpdateCountryDto) {
+  public async update(id: number, updateCountryDto: UpdateCountryDto) {
+    await this.countryNotFound(id);
+    await this.validateUniqueCountryName(updateCountryDto.name, id);
     const country = await this.countryRepository.preload({
       id: +id,
       ...updateCountryDto,
     });
-    if (!country) {
-      throw new NotFoundException(`País ${id} não cadastrado!`);
-    }
-
-    const hasCountry = await this.countryRepository.findOne({
-      where: { name: updateCountryDto.name },
-    });
-
-    if (hasCountry) {
-      throw new InternalServerErrorException(
-        `Já existe um país com o nome ${updateCountryDto.name}!`,
-      );
-    }
-
     return this.countryRepository.save(country);
   }
-
-  async remove(id: number) {
-    //const hasState = await this.stateService.findOne(id)
+  public async remove(id: number) {
     const country = await this.findOne(id);
+    await this.hasLinkedStates(country);
     return this.countryRepository.remove(country);
+  }
+
+  // PRIVATE
+  private async validateUniqueCountryName(name: string, id?: number) {
+    const hasCountry = await this.countryRepository.findOne({
+      where: { name: name },
+    });
+
+    if (hasCountry && (!id || hasCountry.id !== id)) {
+      throw new InternalServerErrorException(
+        `Já existe um país com o nome ${name}!`,
+      );
+    }
+  }
+  private async countryNotFound(id: number) {
+    const hasCountry = await this.countryRepository.findOne({
+      where: { id: +id },
+    });
+
+    if (!hasCountry) {
+      throw new NotFoundException(`País ${id} não cadastrado!`);
+    }
+  }
+  private async hasLinkedStates(country: CreateCountryDto) {
+    const hasState = await this.stateRepository.findOne({
+      where: { country: country },
+    });
+
+    if (hasState) {
+      throw new InternalServerErrorException(
+        `Existem estados relacionados a esse país. Sua eliminação não é permitida!`,
+      );
+    }
   }
 }

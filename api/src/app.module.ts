@@ -1,12 +1,18 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { IamModule } from './iam/iam.module';
 import { RegistersModule } from './registers/registers.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     RegistersModule,
+    UsersModule,
+    IamModule,
     /*
       Bloco abaixo responsavel por se conectar no banco de dados postgres
       Para usar o TypoOrmModule deve ser instalado: npm install @nestjs/typeorm typeorm pg
