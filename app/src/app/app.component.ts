@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import {
-  PoMenuItem,
   PoMenuModule,
   PoPageModule,
   PoToolbarModule,
@@ -17,17 +16,9 @@ import {
     RouterOutlet,
     PoToolbarModule,
     PoMenuModule,
-    PoPageModule
+    PoPageModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) },
-  ];
-
-  private onClick() {
-    alert('Clicked in menu item');
-  }
-}
+export class AppComponent {}
