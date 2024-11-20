@@ -24,8 +24,6 @@ export class CountryController {
 
   @Get()
   findAll(@ActiveUser() user: ActiveUserData) {
-    console.log(user);
-
     return this.countryService.findAll();
   }
 

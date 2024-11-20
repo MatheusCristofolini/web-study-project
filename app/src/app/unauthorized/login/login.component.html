@@ -1,1 +1,7 @@
-<po-page-login (p-login-submit)="onSingIn($event)"> </po-page-login>
+<po-page-login
+  [p-hide-remember-user]="true"
+  [p-loading]="loading"
+  [p-register-url]="newRegister"
+  (p-login-submit)="onLogin($event)"
+>
+</po-page-login>

@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "ad1c6b18-2d1d-483e-b289-fc50a289c780",
+		"name": "Web Study Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12183464"
+	},
+	"item": [
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoibWF0aGV1c2NyaXN0b2ZvbGluaUBob3RtYWlsLmNvbSIsImlhdCI6MTcyOTc1MjkwNywiZXhwIjoxNzI5NzU2NTA3LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.9Q7TxjBQfqcf82l_FYqb3vnq7ClToJtIZxqT5CMQYo8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\country",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\country\\8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"country",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Alemanha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\country",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\country\\10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"country",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\country\\10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"country",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "State",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\state",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\state\\1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Santa Catarina2\",\r\n    \"country\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\state",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\state\\1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000\\state\\13",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sing In (Entrar)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"matheuscristofolini@hotmail.com\",\r\n    \"password\": \"teste12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\authentication\\sing-in",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"authentication",
+								"sing-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoibWF0aGV1c2NyaXN0b2ZvbGluaUBob3RtYWlsLmNvbSIsImlhdCI6MTczMDIzNTM1NiwiZXhwIjoxNzMwMjM4OTU2LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.kjY90c3h3tONFaEK7XRhyhh9kbq8h8FQ5feD2oXe2Dw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\authentication\\refresh-tokens",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"authentication",
+								"refresh-tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sing Up (Criar)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"matheus.cristofolini@newtechs.com.br\",\r\n    \"password\": \"teste12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000\\authentication\\sing-up",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"authentication",
+								"sing-up"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

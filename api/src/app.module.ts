@@ -22,7 +22,7 @@ import { UsersModule } from './users/users.module';
       host: 'localhost',
       port: 5432, // Porta informada no docker compose
       username: 'postgres',
-      password: 'admin', // Senha do banco de dados criada na instalacao do banco na maquina
+      password: 'Nt@2022#', // Senha do banco de dados criada na instalacao do banco na maquina
       database: 'web-study-project', // Nome do banco de dados criado no pgAdmin para o projeto
       autoLoadEntities: true, // Indica que a tabela deve ser criada no banco a partir da definição de entities
       synchronize: true, // Indica que a tabela deve ser criada no banco a partir da definição de entities

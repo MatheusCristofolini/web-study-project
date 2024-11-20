@@ -1,1 +1,14 @@
-<p>country works!</p>
+<po-page-dynamic-search
+  p-title="Cadastro País"
+  [p-actions]="buttonCreate"
+  [p-literals]="customLiterals"
+  [p-quick-search-width]="widthSearch"
+>
+  <po-table
+    p-actions-right="true"
+    [p-columns]="columns"
+    [p-items]="items"
+    [p-actions]="actionsTable"
+  >
+  </po-table>
+</po-page-dynamic-search>

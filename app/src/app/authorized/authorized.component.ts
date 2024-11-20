@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import {
+  PoFieldModule,
   PoMenuItem,
   PoMenuModule,
+  PoMenuPanelModule,
   PoPageModule,
   PoToolbarModule,
 } from '@po-ui/ng-components';
@@ -12,11 +13,12 @@ import {
   selector: 'app-authorized',
   standalone: true,
   imports: [
-    CommonModule,
-    PoToolbarModule,
-    PoMenuModule,
-    PoPageModule,
     RouterOutlet,
+    PoMenuModule,
+    PoToolbarModule,
+    PoMenuPanelModule,
+    PoFieldModule,
+    PoPageModule,
   ],
   templateUrl: './authorized.component.html',
   styleUrl: './authorized.component.css',
@@ -44,6 +46,8 @@ export class AuthorizedComponent {
 
   private navigateRouter(menu: PoMenuItem): void {
     console.log(menu.link);
+
+    console.log(this.router.navigateByUrl(menu.link!));
 
     this.router.navigateByUrl(menu.link!);
   }
